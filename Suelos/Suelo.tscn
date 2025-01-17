@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://f4qcj2uxd4fe"]
+
+[ext_resource type="Texture2D" uid="uid://b7mfhh8fy4gfs" path="res://assets/Double/tile_half_center.png" id="1_ck45e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxqti"]
+size = Vector2(781, 63)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="TileHalfCenter" type="Sprite2D" parent="."]
+position = Vector2(0, 40.44)
+rotation = 0.00183894
+texture = ExtResource("1_ck45e")
+
+[node name="TileHalfCenter2" type="Sprite2D" parent="."]
+position = Vector2(160, 40.44)
+rotation = 0.00183894
+texture = ExtResource("1_ck45e")
+
+[node name="TileHalfCenter3" type="Sprite2D" parent="."]
+position = Vector2(313, 40.44)
+rotation = 0.00183894
+texture = ExtResource("1_ck45e")
+
+[node name="TileHalfCenter4" type="Sprite2D" parent="."]
+position = Vector2(-159, 40.44)
+rotation = 0.00183894
+texture = ExtResource("1_ck45e")
+
+[node name="TileHalfCenter5" type="Sprite2D" parent="."]
+position = Vector2(-311, 40.44)
+rotation = 0.00183894
+texture = ExtResource("1_ck45e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 30.5)
+shape = SubResource("RectangleShape2D_cxqti")

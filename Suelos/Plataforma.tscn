@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bg1u8uyqj7tyk"]
+
+[ext_resource type="Texture2D" uid="uid://dnqbh4rvrkpop" path="res://assets/Double/tile_center.png" id="1_h74fe"]
+[ext_resource type="Texture2D" uid="uid://dc3urpbjdi4mw" path="res://assets/Double/tile_left.png" id="2_i6mba"]
+[ext_resource type="Texture2D" uid="uid://bfci6q7tkmqfs" path="res://assets/Double/tile_right.png" id="3_12c1t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g6im8"]
+size = Vector2(476.062, 57.5122)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+
+[node name="TileCenter" type="Sprite2D" parent="."]
+position = Vector2(0, 38.565)
+scale = Vector2(1, 0.455)
+texture = ExtResource("1_h74fe")
+
+[node name="TileLeft" type="Sprite2D" parent="."]
+position = Vector2(-160, 38.565)
+rotation = -0.0032324
+scale = Vector2(1, 0.455)
+texture = ExtResource("2_i6mba")
+
+[node name="TileRight2" type="Sprite2D" parent="."]
+position = Vector2(157, 38.565)
+scale = Vector2(1, 0.455)
+texture = ExtResource("3_12c1t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.0285445, 23.9984)
+rotation = -0.00334378
+scale = Vector2(1, 0.8)
+shape = SubResource("RectangleShape2D_g6im8")
+one_way_collision = true

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://t2a5be3bhs8a"]
+
+[ext_resource type="Texture2D" uid="uid://cxkts1uj0yyld" path="res://assets/Double/blue_body_circle.png" id="1_gfwyl"]
+[ext_resource type="Texture2D" uid="uid://do5tqgvpsk4ta" path="res://assets/Double/face_a.png" id="2_rhdm2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6lhlm"]
+radius = 74.9938
+height = 151.835
+
+[node name="Personaje" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -0.000880331
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CapsuleShape2D_6lhlm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_gfwyl")
+
+[node name="FaceA" type="Sprite2D" parent="Sprite2D"]
+position = Vector2(10, -6)
+texture = ExtResource("2_rhdm2")

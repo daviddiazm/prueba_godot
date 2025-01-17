@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://dfohtoft54o4y"]
+
+[ext_resource type="Texture2D" uid="uid://ceas6xfvfhd8t" path="res://assets/Double/green_body_square.png" id="1_s4sl7"]
+[ext_resource type="PackedScene" uid="uid://f4qcj2uxd4fe" path="res://Suelos/Suelo.tscn" id="1_y0ru3"]
+[ext_resource type="PackedScene" uid="uid://bg1u8uyqj7tyk" path="res://Suelos/Plataforma.tscn" id="2_18xvb"]
+[ext_resource type="PackedScene" uid="uid://t2a5be3bhs8a" path="res://Personaje/personaje.tscn" id="3_2jky6"]
+[ext_resource type="Script" path="res://Personaje/personaje.gd" id="3_06vtm"]
+[ext_resource type="PackedScene" uid="uid://dvr1d4sop0loa" path="res://Enemigos/barril.tscn" id="4_2mtks"]
+[ext_resource type="PackedScene" uid="uid://biii5wu54krlp" path="res://Enemigos/jefe.tscn" id="6_7f1ql"]
+[ext_resource type="Script" path="res://Niveles/camera_2d.gd" id="8_4pcjk"]
+
+[node name="Nivel_1" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("object_to_follow")]
+position = Vector2(542, 1048)
+limit_bottom = 760
+position_smoothing_enabled = true
+script = ExtResource("8_4pcjk")
+object_to_follow = NodePath("../Personaje")
+
+[node name="decoracion" type="Node2D" parent="."]
+
+[node name="fondo" type="Node2D" parent="decoracion"]
+
+[node name="Sprite2D" type="Sprite2D" parent="decoracion/fondo"]
+z_index = -1
+position = Vector2(690, 377)
+scale = Vector2(9.6, 5.70625)
+texture = ExtResource("1_s4sl7")
+
+[node name="Personaje" parent="." instance=ExtResource("3_2jky6")]
+position = Vector2(175, 538)
+script = ExtResource("3_06vtm")
+gravity = 486
+jump_velocity = 391
+
+[node name="Barril" parent="." instance=ExtResource("4_2mtks")]
+position = Vector2(757, 332)
+
+[node name="Barril2" parent="." instance=ExtResource("4_2mtks")]
+position = Vector2(181, 196)
+
+[node name="suelos" type="Node2D" parent="."]
+position = Vector2(13, 4)
+
+[node name="StaticBody2D4" parent="suelos" instance=ExtResource("2_18xvb")]
+position = Vector2(838, 148)
+rotation = -0.140765
+
+[node name="StaticBody2D2" parent="suelos" instance=ExtResource("1_y0ru3")]
+position = Vector2(249, 626)
+rotation = -0.261799
+
+[node name="StaticBody2D5" parent="suelos" instance=ExtResource("2_18xvb")]
+position = Vector2(854, 429)
+rotation = -0.0829505
+
+[node name="StaticBody2D3" parent="suelos" instance=ExtResource("1_y0ru3")]
+position = Vector2(1001, 530)
+
+[node name="StaticBody2D" parent="suelos" instance=ExtResource("2_18xvb")]
+position = Vector2(324, 291)
+rotation = 0.122173
+
+[node name="Jefe" parent="." instance=ExtResource("6_7f1ql")]
+position = Vector2(811, 83)
+rotation = -0.10472
+scale = Vector2(-1, 1)
