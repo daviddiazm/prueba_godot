@@ -7,6 +7,12 @@ extends CharacterBody2D
 @export var jump_velocity = 100
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
+signal player_kicked()
+signal playe_heald(player_lifes)
+
+var lifes = 3
+
+
 
 func _physics_process(delta: float) -> void:
 	
@@ -20,7 +26,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		
-	if is_jump_pressed:
+	if is_jump_pressed && is_on_floor():
 		velocity.y -= jump_velocity
 	
 	if direccion:
@@ -34,6 +40,16 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 
+
+func _on_area_2d_body_entered(_body: Node2D) -> void:
+	print("baile de victoria")
+	
+	
+func damage_recived() -> void : 
+	#print("danio recivido")
+	player_kicked.emit()
+	playe_heald.emit(lifes)
+	
 
 #func _physics_process(delta: float) -> void:
 	 ##Add the gravity.

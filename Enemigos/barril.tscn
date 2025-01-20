@@ -7,6 +7,10 @@
 radius = 39.0
 
 [node name="Barril" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 7
+contact_monitor = true
+max_contacts_reported = 1
 script = ExtResource("1_scyk2")
 
 [node name="RedBodyCircle" type="Sprite2D" parent="."]
@@ -15,3 +19,5 @@ texture = ExtResource("2_cnewe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8o4km")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

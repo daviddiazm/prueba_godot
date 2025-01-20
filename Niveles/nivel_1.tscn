@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dfohtoft54o4y"]
+[gd_scene load_steps=13 format=3 uid="uid://dfohtoft54o4y"]
 
 [ext_resource type="Texture2D" uid="uid://ceas6xfvfhd8t" path="res://assets/Double/green_body_square.png" id="1_s4sl7"]
 [ext_resource type="PackedScene" uid="uid://f4qcj2uxd4fe" path="res://Suelos/Suelo.tscn" id="1_y0ru3"]
@@ -8,6 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://dvr1d4sop0loa" path="res://Enemigos/barril.tscn" id="4_2mtks"]
 [ext_resource type="PackedScene" uid="uid://biii5wu54krlp" path="res://Enemigos/jefe.tscn" id="6_7f1ql"]
 [ext_resource type="Script" path="res://Niveles/camera_2d.gd" id="8_4pcjk"]
+[ext_resource type="Texture2D" uid="uid://ckov1lvapq27l" path="res://assets/Double/purple_body_rhombus.png" id="8_yfaag"]
+[ext_resource type="PackedScene" uid="uid://dv3qh7t22md0a" path="res://UI/canvas_layer.tscn" id="10_p11h8"]
+[ext_resource type="Script" path="res://Niveles/game_controler.gd" id="11_563ul"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f3511"]
+size = Vector2(176, 182)
 
 [node name="Nivel_1" type="Node2D"]
 
@@ -24,12 +30,12 @@ object_to_follow = NodePath("../Personaje")
 
 [node name="Sprite2D" type="Sprite2D" parent="decoracion/fondo"]
 z_index = -1
-position = Vector2(690, 377)
-scale = Vector2(9.6, 5.70625)
+position = Vector2(648, -37.2501)
+scale = Vector2(19.2125, 10.8844)
 texture = ExtResource("1_s4sl7")
 
 [node name="Personaje" parent="." instance=ExtResource("3_2jky6")]
-position = Vector2(175, 538)
+position = Vector2(153, 600)
 script = ExtResource("3_06vtm")
 gravity = 486
 jump_velocity = 391
@@ -38,17 +44,17 @@ jump_velocity = 391
 position = Vector2(757, 332)
 
 [node name="Barril2" parent="." instance=ExtResource("4_2mtks")]
-position = Vector2(181, 196)
+position = Vector2(246, -316)
 
 [node name="suelos" type="Node2D" parent="."]
 position = Vector2(13, 4)
 
 [node name="StaticBody2D4" parent="suelos" instance=ExtResource("2_18xvb")]
-position = Vector2(838, 148)
+position = Vector2(970, -186)
 rotation = -0.140765
 
 [node name="StaticBody2D2" parent="suelos" instance=ExtResource("1_y0ru3")]
-position = Vector2(249, 626)
+position = Vector2(227, 688)
 rotation = -0.261799
 
 [node name="StaticBody2D5" parent="suelos" instance=ExtResource("2_18xvb")]
@@ -56,13 +62,49 @@ position = Vector2(854, 429)
 rotation = -0.0829505
 
 [node name="StaticBody2D3" parent="suelos" instance=ExtResource("1_y0ru3")]
-position = Vector2(1001, 530)
+position = Vector2(979, 592)
 
 [node name="StaticBody2D" parent="suelos" instance=ExtResource("2_18xvb")]
 position = Vector2(324, 291)
 rotation = 0.122173
 
+[node name="StaticBody2D6" parent="suelos" instance=ExtResource("2_18xvb")]
+position = Vector2(851, 171)
+rotation = -0.116812
+
+[node name="StaticBody2D7" parent="suelos" instance=ExtResource("2_18xvb")]
+position = Vector2(342, -9)
+rotation = 0.144546
+
+[node name="PurpleBodyRhombus" type="Sprite2D" parent="."]
+position = Vector2(741.067, 81.8225)
+texture = ExtResource("8_yfaag")
+
+[node name="Area2D" type="Area2D" parent="PurpleBodyRhombus"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PurpleBodyRhombus/Area2D"]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_f3511")
+
 [node name="Jefe" parent="." instance=ExtResource("6_7f1ql")]
-position = Vector2(811, 83)
+position = Vector2(943, -251)
 rotation = -0.10472
 scale = Vector2(-1, 1)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("10_p11h8")]
+
+[node name="GameControler" type="Node2D" parent="."]
+script = ExtResource("11_563ul")
+
+[node name="Timer" type="Timer" parent="GameControler"]
+autostart = true
+
+[connection signal="playe_heald" from="Personaje" to="CanvasLayer" method="_on_personaje_playe_heald"]
+[connection signal="player_kicked" from="Personaje" to="CanvasLayer" method="_on_personaje_player_kicked"]
+[connection signal="player_kicked" from="Personaje" to="GameControler" method="_on_personaje_player_kicked"]
+[connection signal="body_entered" from="PurpleBodyRhombus/Area2D" to="Personaje" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="PurpleBodyRhombus/Area2D" to="GameControler" method="_on_area_2d_body_entered"]
+[connection signal="time_updated" from="GameControler" to="CanvasLayer" method="_on_game_controler_time_updated"]
+[connection signal="timeout" from="GameControler/Timer" to="GameControler" method="_on_timer_timeout"]

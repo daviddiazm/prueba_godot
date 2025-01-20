@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://diduaii3eb6y3"]
+
+[ext_resource type="Script" path="res://scenne_finish.gd" id="1_k4v4n"]
+
+[node name="ScenneFinish" type="CanvasLayer"]
+script = ExtResource("1_k4v4n")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -42.0
+offset_right = 132.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Hola"
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+text = "Volver a jugar"
+
+[connection signal="button_down" from="VBoxContainer/Button" to="." method="_on_button_button_down"]
